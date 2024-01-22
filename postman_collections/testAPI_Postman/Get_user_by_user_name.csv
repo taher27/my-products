@@ -1,0 +1,4 @@
+username,statusCode,scenario
+theUser,200,successful operation
+theUser,400,Invalid username supplied
+theUser,404,User not found

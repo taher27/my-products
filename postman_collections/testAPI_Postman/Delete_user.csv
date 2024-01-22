@@ -1,0 +1,11 @@
+username,statusCode,scenario
+johnDoe,400,Invalid username supplied
+janeDoe,400,Invalid username supplied
+samSmith,400,Invalid username supplied
+emmaBrown,400,Invalid username supplied
+mikeJohnson,400,Invalid username supplied
+alexTaylor,404,User not found
+lisaMiller,404,User not found
+jamesAnderson,404,User not found
+sarahWilson,404,User not found
+robertThomas,404,User not found

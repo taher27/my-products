@@ -1,0 +1,5 @@
+name,photoUrls,id,tags,status,statusCode,scenario
+doggie,"<string>,<string>",10,"<long>,<string>","<string>",200,Successful operation
+doggie,"<string>,<string>",10,"<long>,<string>","<string>",400,Invalid ID supplied
+doggie,"<string>,<string>",10,"<long>,<string>","<string>",404,Pet not found
+doggie,"<string>,<string>",10,"<long>,<string>","<string>",405,Validation exception

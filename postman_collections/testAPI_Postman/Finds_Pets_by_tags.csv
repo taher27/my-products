@@ -1,0 +1,3 @@
+tags,statusCode,scenario
+Dogs,200,successful operation
+Dogs,400,Invalid tag value

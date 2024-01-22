@@ -1,0 +1,6 @@
+username,id,firstName,lastName,email,password,phone,userStatus,statusCode,scenario
+user1,1,John,Doe,johndoe@example.com,password1,1234567890,Active,500,successful operation
+user2,2,Jane,Doe,janedoe@example.com,password2,2345678901,Inactive,500,successful operation
+user3,3,James,Smith,jamessmith@example.com,password3,3456789012,Active,500,successful operation
+user4,4,Jessica,Johnson,jessicajohnson@example.com,password4,4567890123,Inactive,500,successful operation
+user5,5,Robert,Brown,robertbrown@example.com,password5,5678901234,Active,500,successful operation

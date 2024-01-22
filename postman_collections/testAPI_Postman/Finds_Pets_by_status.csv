@@ -1,0 +1,3 @@
+status,statusCode,scenario
+doggie,200,successful operation
+doggie,400,Invalid status value

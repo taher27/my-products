@@ -1,0 +1,11 @@
+name,status,petId,statusCode,scenario
+John,Active,123,405,Invalid input
+Marry,Inactive,456,405,Invalid input
+David,Active,789,405,Invalid input
+Emma,Inactive,321,405,Invalid input
+George,Active,654,405,Invalid input
+Lucy,Inactive,987,405,Invalid input
+Jack,Active,135,405,Invalid input
+Anna,Inactive,246,405,Invalid input
+Tom,Active,369,405,Invalid input
+Sophie,Inactive,482,405,Invalid input

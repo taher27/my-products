@@ -1,0 +1,3 @@
+additionalMetadata,petId,statusCode,scenario
+"{\n  \"code\": 86347710,\n  \"type\": \"laboris occaecat aute pariatur\",\n  \"message\": \"deserunt aliquip culpa\"\n}",86347710,200,successful operation
+"{\n  \"mode\": \"file\"\n}",,200,successful operation

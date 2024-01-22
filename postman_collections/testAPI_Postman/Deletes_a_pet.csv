@@ -1,0 +1,6 @@
+petId,statusCode,scenario
+1,400,Invalid pet value
+2,400,Invalid pet value
+3,400,Invalid pet value
+4,400,Invalid pet value
+5,400,Invalid pet value

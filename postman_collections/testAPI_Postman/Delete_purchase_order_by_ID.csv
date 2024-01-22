@@ -1,0 +1,11 @@
+orderId,statusCode,scenario
+123456,400,Invalid ID supplied
+789012,404,Order not found
+345678,400,Invalid ID supplied
+901234,404,Order not found
+567890,400,Invalid ID supplied
+234567,404,Order not found
+890123,400,Invalid ID supplied
+456789,404,Order not found
+012345,400,Invalid ID supplied
+678901,404,Order not found
