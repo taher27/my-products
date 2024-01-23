@@ -1,0 +1,3 @@
+productId,statusCode,scenario
+4,200,successful operation
+4,404,Product not found
