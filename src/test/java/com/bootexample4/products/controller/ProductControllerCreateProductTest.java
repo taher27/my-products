@@ -63,6 +63,23 @@ Solution: Use a strong cryptographic function with a salt to hash sensitive info
 */
 
 // ********RoostGPT********
+
+package com.bootexample4.products.controller;
+
+import com.bootexample4.products.model.Product;
+import com.bootexample4.products.repository.ProductRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+// import org.springframework.http.ResponseEntity;
+
+// import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 public class ProductControllerCreateProductTest {
 
 	@Mock

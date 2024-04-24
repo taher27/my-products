@@ -74,46 +74,46 @@ import static org.mockito.Mockito.*;
 
 public class ProductControllerDeleteProductTest {
 
-	@InjectMocks
-	ProductController productController;
+  @InjectMocks
+  ProductController productController;
 
-	@Mock
-	ProductRepository productRepository;
+  @Mock
+  ProductRepository productRepository;
 
-	@BeforeEach
-	void setUp() {
-		MockitoAnnotations.initMocks(this);
-	}
+  @BeforeEach
+  void setUp() {
+    MockitoAnnotations.initMocks(this);
+  }
 
-	@Test
-	void deleteExistingProduct() {
-		Product product = new Product();
-		product.setId(1L);
-		product.setName("Test Product");
-		product.setDescription("Test Description");
-		product.setPrice(100.0);
+  @Test
+  void deleteExistingProduct() {
+    Product product = new Product();
+    product.setId(1L);
+    product.setName("Test Product");
+    product.setDescription("Test Description");
+    product.setPrice(100.0);
 
-		when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+    when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
-		ResponseEntity<Object> responseEntity = productController.deleteProduct(1L);
+    ResponseEntity<Object> responseEntity = productController.deleteProduct(1L);
 
-		verify(productRepository, times(1)).delete(product);
-		assertEquals(200, responseEntity.getStatusCodeValue());
-	}
+    verify(productRepository, times(1)).delete(product);
+    assertEquals(200, responseEntity.getStatusCodeValue());
+  }
 
-	@Test
-    void deleteNonExistingProduct() {
-        when(productRepository.findById(1L)).thenReturn(Optional.empty());
+  @Test
+  void deleteNonExistingProduct() {
+    when(productRepository.findById(1L)).thenReturn(Optional.empty());
 
-        ResponseEntity<Object> responseEntity = productController.deleteProduct(1L);
+    ResponseEntity<Object> responseEntity = productController.deleteProduct(1L);
 
-        verify(productRepository, times(0)).delete(any(Product.class));
-        assertEquals(404, responseEntity.getStatusCodeValue());
-    }
+    verify(productRepository, times(0)).delete(any(Product.class));
+    assertEquals(404, responseEntity.getStatusCodeValue());
+  }
 
-	@Test
-	void deleteProductWithNullId() {
-		assertThrows(IllegalArgumentException.class, () -> productController.deleteProduct(null));
-	}
+  @Test
+  void deleteProductWithNullId() {
+    assertThrows(IllegalArgumentException.class, () -> productController.deleteProduct(null));
+  }
 
 }

@@ -77,40 +77,43 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class ProductControllerGetAllProductsTest {
 
-	@InjectMocks
-	ProductController productController;
+  @InjectMocks
+  ProductController productController;
 
-	@Mock
-	ProductRepository productRepository;
+  @Mock
+  ProductRepository productRepository;
 
-	@BeforeEach
-	public void setup() {
-		MockitoAnnotations.initMocks(this); // Make sure Mockito is correctly initialized
-	}
+  @BeforeEach
+  public void setup() {
+    MockitoAnnotations.initMocks(this); // Make sure Mockito is correctly initialized
+  }
 
-	@Test
-	public void testGetAllProducts() {
-		Product product1 = new Product(); // Make sure Product class is correctly
-											// initialized
-		// ...
-		// Check if productRepository.findAll() is correctly mocked and returns the
-		// expected result
-		when(productRepository.findAll()).thenReturn(expectedProducts);
+  @Test
+  public void testGetAllProducts() {
+    Product product1 = new Product(); // Make sure Product class is correctly
+    // initialized
+    product1.setId((long) 123456);
+    product1.setDescription("unused product description");
 
-		List<Product> actualProducts = productController.getAllProducts();
+    // ...
+    // Check if productRepository.findAll() is correctly mocked and returns the
+    // expected result
+    when(productRepository.findAll());
 
-		assertEquals(expectedProducts, actualProducts); // Check if the actual result
-														// matches the expected result
-	}
+    List<Product> actualProducts = productController.getAllProducts();
 
-	@Test
-	public void testGetAllProductsWhenNoProductsExist() {
-		// ...
-	}
+    assertEquals(product1, actualProducts); // Check if the actual result
+                                            // matches the expected result
+  }
 
-	@Test
-	public void testGetAllProductsWhenRepositoryThrowsException() {
-		// ...
-	}
+  @Test
+  public void testGetAllProductsWhenNoProductsExist() {
+    // ...
+  }
+
+  @Test
+  public void testGetAllProductsWhenRepositoryThrowsException() {
+    // ...
+  }
 
 }
