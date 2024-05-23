@@ -1,0 +1,5 @@
+productId,statusCode,scenario
+4,200,successful operation
+randomValue,404,Product not found
+apple,200,successful operation
+randomValue,404,Product not found
