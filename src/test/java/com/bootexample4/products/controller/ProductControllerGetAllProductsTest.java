@@ -41,6 +41,8 @@ Execution:
   Assert: Assert that an appropriate exception is thrown.
 Validation:
   The assertion aims to verify that the method getAllProducts correctly handles any exceptions thrown by the ProductRepository. This is important to prevent application crashes and to provide meaningful error messages to the user.
+
+roost_feedback [11/12/2024, 6:40:08 AM]:Improve Comments and Add one comment that says improving GetAllProductsTest method
 */
 
 // ********RoostGPT********
@@ -68,36 +70,37 @@ import org.springframework.web.bind.annotation.*;
 @ExtendWith(MockitoExtension.class)
 public class ProductControllerGetAllProductsTest {
 
-	@Mock
-	private ProductRepository productRepository;
+    @Mock
+    private ProductRepository productRepository;
 
-	@InjectMocks
-	private ProductController productController;
+    @InjectMocks
+    private ProductController productController;
 
-	@Test
-	@Tag("valid")
-	public void testGetAllProductsReturnsAllProducts() {
-		Product product1 = new Product();
-		Product product2 = new Product();
-		List<Product> productList = new ArrayList<>();
-		productList.add(product1);
-		productList.add(product2);
-		when(productRepository.findAll()).thenReturn(productList);
-		List<Product> result = productController.getAllProducts();
-		assertEquals(productList, result, "getAllProducts should return all products");
-	}
+    @Test
+    @Tag("valid")
+    public void testGetAllProductsReturnsAllProducts() {
+        Product product1 = new Product();
+        Product product2 = new Product();
+        List<Product> productList = new ArrayList<>();
+        productList.add(product1);
+        productList.add(product2);
+        when(productRepository.findAll()).thenReturn(productList);
+        List<Product> result = productController.getAllProducts();
+        assertEquals(productList, result, "getAllProducts should return all products");
+    }
 
-	@Test
-	@Tag("boundary")
-	public void testGetAllProductsReturnsEmptyListWhenNoProductsExist() {
-		List<Product> productList = new ArrayList<>();
-		when(productRepository.findAll()).thenReturn(productList);
-		List<Product> result = productController.getAllProducts();
-		assertTrue(result.isEmpty(), "getAllProducts should return an empty list when no products exist");
-	}
+    @Test
+    @Tag("boundary")
+    public void testGetAllProductsReturnsEmptyListWhenNoProductsExist() {
+        List<Product> productList = new ArrayList<>();
+        when(productRepository.findAll()).thenReturn(productList);
+        List<Product> result = productController.getAllProducts();
+        assertTrue(result.isEmpty(), "getAllProducts should return an empty list when no products exist");
+    }
 
-	@Test
+    @Test
     @Tag("invalid")
+    // Improving GetAllProductsTest method
     public void testGetAllProductsHandlesRepositoryExceptions() {
         when(productRepository.findAll()).thenThrow(new RuntimeException());
         try {
@@ -106,5 +109,4 @@ public class ProductControllerGetAllProductsTest {
             assertTrue(e instanceof RuntimeException, "getAllProducts should handle exceptions thrown by repository");
         }
     }
-
 }
