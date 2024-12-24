@@ -1,4 +1,3 @@
-This test file is marked invalid as it contains compilation errors. Change the extension to of this file to .java, to manually edit its contents
 
 // ********RoostGPT********
 /*
@@ -58,11 +57,14 @@ Validation:
 ```
 
 Note: The provided scenarios cover various aspects of the getAllProducts method, including happy paths, edge cases, and error handling. However, additional scenarios may be required depending on the specific requirements and constraints of the application.
+
+roost_feedback [12/24/2024, 12:22:40 PM]:- Add more comments to the test
 */
 
 // ********RoostGPT********
 
 package com.bootexample4.products.controller;
+
 import com.bootexample4.products.model.Product;
 import com.bootexample4.products.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,60 +72,83 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-@Tag("valid")
 class ProductControllerGetAllProductsTest {
     private ProductController productController;
+
     @Mock
     private ProductRepository productRepository;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         productController = new ProductController(productRepository);
     }
+
     @Test
     @Tag("valid")
     void getAllProductsWhenRepositoryHasProducts() {
+        // Arrange
         List<Product> products = new ArrayList<>();
         products.add(new Product(1L, "Product 1", "Description 1", 10.0));
         products.add(new Product(2L, "Product 2", "Description 2", 20.0));
         when(productRepository.findAll()).thenReturn(products);
+
+        // Act
         List<Product> result = productController.getAllProducts();
+
+        // Assert
         assertNotNull(result);
         assertEquals(2, result.size());
     }
+
     @Test
     @Tag("valid")
     void getAllProductsWhenRepositoryIsEmpty() {
+        // Arrange
         List<Product> emptyProducts = new ArrayList<>();
         when(productRepository.findAll()).thenReturn(emptyProducts);
+
+        // Act
         List<Product> result = productController.getAllProducts();
+
+        // Assert
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
+
     @Test
     @Tag("invalid")
     void verifyReturnedListIsImmutable() {
+        // Arrange
         List<Product> products = new ArrayList<>();
         products.add(new Product(1L, "Product 1", "Description 1", 10.0));
         products.add(new Product(2L, "Product 2", "Description 2", 20.0));
         when(productRepository.findAll()).thenReturn(products);
+
+        // Act
         List<Product> result = productController.getAllProducts();
+
+        // Assert
         assertThrows(UnsupportedOperationException.class, () -> result.add(new Product()));
     }
+
     @Test
     @Tag("boundary")
     void verifyNullSafetyWhenRepositoryReturnsNull() {
+        // Arrange
         when(productRepository.findAll()).thenReturn(null);
+
+        // Act
         List<Product> result = productController.getAllProducts();
+
+        // Assert
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
