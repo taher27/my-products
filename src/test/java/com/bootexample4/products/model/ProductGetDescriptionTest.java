@@ -70,6 +70,8 @@ Validation:
   This test ensures that the method correctly handles and returns descriptions containing special characters, which is important for product descriptions that might include symbols, unicode characters, or formatting.
 
 These scenarios cover the main functionality and edge cases for the getDescription() method, focusing on the available methods and fields in the provided entity class.
+
+roost_feedback [1/8/2025, 12:08:31 PM]:- Add more comments to the test
 */
 
 // ********RoostGPT********
@@ -86,53 +88,79 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * Test class for Product's description functionality
+ * Tests various scenarios for getting and setting product descriptions
+ */
 public class ProductGetDescriptionTest {
 
-	private Product product;
+    private Product product;
 
-	@BeforeEach
-	public void setUp() {
-		product = new Product();
-	}
+    /**
+     * Sets up a new Product instance before each test
+     */
+    @BeforeEach
+    public void setUp() {
+        product = new Product();
+    }
 
-	@Test
-	@Tag("valid")
-	public void testRetrieveValidDescription() {
-		String expectedDescription = "Sample product description";
-		product.setDescription(expectedDescription);
-		assertEquals(expectedDescription, product.getDescription());
-	}
+    /**
+     * Tests retrieving a valid description that was previously set
+     * Verifies that the getter returns the exact same string that was set
+     */
+    @Test
+    @Tag("valid")
+    public void testRetrieveValidDescription() {
+        String expectedDescription = "Sample product description";
+        product.setDescription(expectedDescription);
+        assertEquals(expectedDescription, product.getDescription());
+    }
 
-	@Test
-	@Tag("boundary")
-	public void testRetrieveNullDescription() {
-		assertNull(product.getDescription());
-	}
+    /**
+     * Tests retrieving description when none has been set
+     * Verifies that null is returned for uninitialized description
+     */
+    @Test
+    @Tag("boundary")
+    public void testRetrieveNullDescription() {
+        assertNull(product.getDescription());
+    }
 
-	@Test
-	@Tag("boundary")
-	public void testRetrieveEmptyDescription() {
-		product.setDescription("");
-		assertEquals("", product.getDescription());
-	}
+    /**
+     * Tests setting and retrieving an empty string description
+     * Verifies that empty string is handled correctly
+     */
+    @Test
+    @Tag("boundary")
+    public void testRetrieveEmptyDescription() {
+        product.setDescription("");
+        assertEquals("", product.getDescription());
+    }
 
-	@Test
-	@Tag("valid")
-	public void testRetrieveDescriptionAfterMultipleUpdates() {
-		product.setDescription("First description");
-		product.setDescription("Second description");
-		String finalDescription = "Final description";
-		product.setDescription(finalDescription);
+    /**
+     * Tests retrieving description after multiple updates
+     * Verifies that only the last set description is retained
+     */
+    @Test
+    @Tag("valid")
+    public void testRetrieveDescriptionAfterMultipleUpdates() {
+        product.setDescription("First description");
+        product.setDescription("Second description");
+        String finalDescription = "Final description";
+        product.setDescription(finalDescription);
 
-		assertEquals(finalDescription, product.getDescription());
-	}
+        assertEquals(finalDescription, product.getDescription());
+    }
 
-	@Test
-	@Tag("valid")
-	public void testRetrieveDescriptionWithSpecialCharacters() {
-		String specialCharDescription = "Product !@#$%^&*()_+ Description";
-		product.setDescription(specialCharDescription);
-		assertEquals(specialCharDescription, product.getDescription());
-	}
-
+    /**
+     * Tests setting and retrieving description containing special characters
+     * Verifies that special characters are handled correctly
+     */
+    @Test
+    @Tag("valid")
+    public void testRetrieveDescriptionWithSpecialCharacters() {
+        String specialCharDescription = "Product !@#$%^&*()_+ Description";
+        product.setDescription(specialCharDescription);
+        assertEquals(specialCharDescription, product.getDescription());
+    }
 }
