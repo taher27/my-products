@@ -40,6 +40,8 @@ Validation:
   The assertion aims to verify that the getId method handles null values gracefully. The functionality to handle nullation is crucial because it ensures that the application can successfully deal with scenarios wherein an ID is not provided.
 
 roost_feedback [2/18/2025, 6:46:08 PM]:- Add more comments to the test
+
+roost_feedback [2/19/2025, 8:10:40 AM]:- Format the test
 */
 
 // ********RoostGPT********
@@ -55,38 +57,32 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-//Test class for Product model
+
 class ProductGetIdTest {
+   
+    @Test
+    @Tag("valid")
+    public void testProductId() {
+        Product product = new Product();
+        Long expectedId = 123L;
+        product.setId(expectedId);
+        Long actualId = product.getId();
+        assertEquals(expectedId, actualId, "Expected and actual product IDs do not match");
+    }
 
-    // Test for a valid productId
-	@Test
-	@Tag("valid")
-	public void testProductId() {
-		Product product = new Product();
-		Long expectedId = 123L;
-		product.setId(expectedId);
-		Long actualId = product.getId();
-		// Compare the expected ID and actual ID
-		assertEquals(expectedId, actualId, "Expected and actual product IDs do not match");
-	}
+    @Test
+    @Tag("boundary")
+    public void testDefaultIdValue() {
+        Product product = new Product();
+        assertNull(product.getId(), "Default product ID should be null");
+    }
 
-	// Test for the default product ID. It should be null.
-	@Test
-	@Tag("boundary")
-	public void testDefaultIdValue() {
-		Product product = new Product();
-		// Check if the product's ID is null by default
-		assertNull(product.getId(), "Default product ID should be null");
-	}
-
-	// Test for the case where the product ID is set to null.
-	@Test
-	@Tag("invalid")
-	public void testNullId() {
-		Product product = new Product();
-		product.setId(null);
-		// Check if the product's ID is null when set to null
-		assertNull(product.getId(), "Product ID should be null when set to null");
-	}
+    @Test
+    @Tag("invalid")
+    public void testNullId() {
+        Product product = new Product();
+        product.setId(null);
+        assertNull(product.getId(), "Product ID should be null when it is set to null");
+    }
 
 }
