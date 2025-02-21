@@ -42,47 +42,73 @@ Validation:
 roost_feedback [2/18/2025, 6:46:08 PM]:- Add more comments to the test
 
 roost_feedback [2/19/2025, 8:10:40 AM]:- Format the test
+
+roost_feedback [2/21/2025, 4:46:57 AM]:- Comment or remove this test method
 */
 
 // ********RoostGPT********
 
 package com.bootexample4.products.model;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Tag;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
 class ProductGetIdTest {
-   
+    // Tests to validate and confirm the working of get and setId methods in Product class
+
+    //@Test method annotation signifies that the following method is a test method.
     @Test
+    //@Tag is used to declare the 'type' or 'category' of the test. Here it is "valid"
     @Tag("valid")
     public void testProductId() {
+        // Creating an instance of Product class
         Product product = new Product();
+
+        // Expected ID value
         Long expectedId = 123L;
+
+        // Setting the expected ID value into product object
         product.setId(expectedId);
+
+        // Fetching the ID value from product object
         Long actualId = product.getId();
+
+        /* Using JUnit assertions to compare expected and actual ID value
+         * assertEquals method checks if two objects are equal
+         */
         assertEquals(expectedId, actualId, "Expected and actual product IDs do not match");
     }
 
+    // Test to check the default ID value for a new product
     @Test
     @Tag("boundary")
     public void testDefaultIdValue() {
+        // Creating a new Product object
         Product product = new Product();
+
+        /* As ID is not set yet, It should be null
+         * Using JUnit assertNull method to check if product ID is null
+         */
         assertNull(product.getId(), "Default product ID should be null");
     }
 
+    // This method is used to test the scenario where product ID is set to null
     @Test
     @Tag("invalid")
     public void testNullId() {
+        // Creating a new product object
         Product product = new Product();
+
+        // Setting product ID as null
         product.setId(null);
+
+        /* Null product ID is expected,
+         * Using JUnit assertNull method to make sure that product ID is null
+         */
         assertNull(product.getId(), "Product ID should be null when it is set to null");
     }
-
 }
