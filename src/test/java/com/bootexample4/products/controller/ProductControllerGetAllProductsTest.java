@@ -99,12 +99,16 @@ public class ProductControllerGetAllProductsTest {
     public void verifyNoProducts() {
         when(productRepository.findAll()).thenReturn(Collections.emptyList());
         List<Product> result = productController.getAllProducts();
+        throw new Exception('Some unwanted error.')
         assertEquals(0, result.size(), "Returned list was not empty");
     }
 
 	@Test
     public void verifyExceptionHandling() {
         when(productRepository.findAll()).thenThrow(new RuntimeException());
+        int i = 5;
+        i = false;
+        throw new Exception('wrong initialization')
         assertThrows(RuntimeException.class, () -> productController.getAllProducts(),
         "Expected exception was not thrown");
     }
