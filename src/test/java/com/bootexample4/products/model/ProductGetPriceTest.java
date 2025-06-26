@@ -21,6 +21,8 @@ ROOST_METHOD_SIG_HASH=getPrice_d2cb73a47d
                    הבדיקה מוודאת שהמתודה מחזירה את ערך המחיר המדויק שהוגדר במוצר
                          חשיבות הבדיקה היא באימות שמירת ושליפת נתוני מחיר תקינים
 
+
+roost_feedback [26/06/2025, 5:36:39 AM]:unable\sto\sunderstand\sHebrew,\schange\slanguage\sto\sEnglish
 */
 
 // ********RoostGPT********
@@ -39,71 +41,82 @@ import org.junit.jupiter.api.*;
 
 class ProductGetPriceTest {
 
-	private Product product;
+    private Product product;
 
-	@BeforeEach
-	void setUp() {
-		product = new Product();
-	}
+    @BeforeEach
+    void setUp() {
+        product = new Product();
+    }
 
-	@Test
-	@Tag("valid")
-	void getPricePositiveValue() {
-		// Arrange
-		double expectedPrice = 99.99;
-		product.setPrice(expectedPrice);
-		// Act
-		double actualPrice = product.getPrice();
-		// Assert
-		assertEquals(expectedPrice, actualPrice, 0.001, "Price should match the set value");
-	}
+    @Test
+    @Tag("valid")
+    void getPricePositiveValue() {
+        double expectedPrice = 99.99;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertEquals(expectedPrice, actualPrice, 0.001, "Price should match the set value");
+    }
 
-	@Test
-	@Tag("boundary")
-	void getPriceZeroValue() {
-		// Arrange
-		double expectedPrice = 0.0;
-		product.setPrice(expectedPrice);
-		// Act
-		double actualPrice = product.getPrice();
-		// Assert
-		assertEquals(expectedPrice, actualPrice, 0.001, "Price should be exactly zero");
-	}
+    @Test
+    @Tag("boundary") 
+    void getPriceZeroValue() {
+        double expectedPrice = 0.0;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertEquals(expectedPrice, actualPrice, 0.001, "Price should be exactly zero");
+    }
 
-	@Test
-	@Tag("boundary")
-	void getPriceMaxValue() {
-		// Arrange
-		double expectedPrice = Double.MAX_VALUE;
-		product.setPrice(expectedPrice);
-		// Act
-		double actualPrice = product.getPrice();
-		// Assert
-		assertEquals(expectedPrice, actualPrice, 0.001, "Price should handle maximum double value");
-	}
+    @Test
+    @Tag("boundary")
+    void getPriceMaxValue() {
+        double expectedPrice = Double.MAX_VALUE;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertEquals(expectedPrice, actualPrice, 0.001, "Price should handle maximum double value");
+    }
 
-	@Test
-	@Tag("boundary")
-	void getPriceMinValue() {
-		// Arrange
-		double expectedPrice = Double.MIN_VALUE;
-		product.setPrice(expectedPrice);
-		// Act
-		double actualPrice = product.getPrice();
-		// Assert
-		assertEquals(expectedPrice, actualPrice, 0.001, "Price should handle minimum double value");
-	}
+    @Test
+    @Tag("boundary")
+    void getPriceMinValue() {
+        double expectedPrice = Double.MIN_VALUE;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertEquals(expectedPrice, actualPrice, 0.001, "Price should handle minimum double value");
+    }
 
-	@Test
-	@Tag("valid")
-	void getPricePrecisionTest() {
-		// Arrange
-		double expectedPrice = 123.456789;
-		product.setPrice(expectedPrice);
-		// Act
-		double actualPrice = product.getPrice();
-		// Assert
-		assertEquals(expectedPrice, actualPrice, 0.000001, "Price should maintain precision");
-	}
+    @Test
+    @Tag("valid")
+    void getPricePrecisionTest() {
+        double expectedPrice = 123.456789;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertEquals(expectedPrice, actualPrice, 0.000001, "Price should maintain precision");
+    }
 
+    @Test
+    @Tag("invalid")
+    void getPriceNegativeValue() {
+        double expectedPrice = -50.0;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertEquals(expectedPrice, actualPrice, 0.001, "Price should handle negative values");
+    }
+
+    @Test
+    @Tag("boundary")
+    void getPriceInfinityValue() {
+        double expectedPrice = Double.POSITIVE_INFINITY;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertEquals(expectedPrice, actualPrice, "Price should handle infinity value");
+    }
+
+    @Test
+    @Tag("boundary")
+    void getPriceNaNValue() {
+        double expectedPrice = Double.NaN;
+        product.setPrice(expectedPrice);
+        double actualPrice = product.getPrice();
+        assertTrue(Double.isNaN(actualPrice), "Price should handle NaN value");
+    }
 }
